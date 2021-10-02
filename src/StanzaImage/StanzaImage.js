@@ -111,7 +111,7 @@ export default function StanzaImage({
           animation-timing-function: linear;
         }
 
-        #stanza${index}Image${imageIndex} img {
+        #stanza${index}Image${imageIndex} .Image {
           height: ${250 * scale}px;
           transform: translateX(-${(250 * scale) / 2}px) translateY(-${
         (250 * scale) / 2
@@ -258,48 +258,50 @@ export default function StanzaImage({
           top: { top: "5%", center: "30%", bottom: "55%" }[positionY],
         }}
       >
-        <img
-          src={
-            {
-              url: url,
-              // Newport Nebraska
-              "Alaska Flag": AlaskaFlag,
-              "California Flag": CaliforniaFlag,
-              "City Skyline": CitySkyline,
-              Corn: Corn,
-              Grass: Grass,
-              Surfboard: Surfboard,
-              Swimsuit: Swimsuit,
-              Umbrella: Umbrella,
-              "Wave Outline": WaveOutline,
-              // Guide to Sunset
-              "Blue Flowers": BlueFlowers,
-              "Cave Entrance": CaveEntrance,
-              "Cherry Pie": CherryPie,
-              "Constellation 1": Constellation1,
-              Kite: Kite,
-              Ramen: Ramen,
-              Town: Town,
-              Treasure: Treasure,
-              Mountain: Mountain,
-              Sun: Sun,
-              "Action Box": ActionBox,
-              Bed: Bed,
-              "Constellation 2": Constellation2,
-              "Constellation 3": Constellation3,
-              "Full Moon": FullMoon,
-              Mountains: Mountains,
-              "Mount Everest": MountEverest,
-              "Music Notes": MusicNotes,
-              Oak: Oak,
-              Penny: Penny,
-              "Pink Poodle": PinkPoodle,
-              "Shrub 1": Shrub1,
-              "Shrub 2": Shrub2,
-            }[children]
-          }
-          alt={children}
-        />
+        {children === "url" ? (
+          <img className="Image" src={url} alt={children} />
+        ) : (
+          <div
+            className="Image"
+            dangerouslySetInnerHTML={{
+              __html: {
+                "Alaska Flag": AlaskaFlag,
+                "California Flag": CaliforniaFlag,
+                "City Skyline": CitySkyline,
+                Corn: Corn,
+                Grass: Grass,
+                Surfboard: Surfboard,
+                Swimsuit: Swimsuit,
+                Umbrella: Umbrella,
+                "Wave Outline": WaveOutline,
+                // Guide to Sunset
+                "Blue Flowers": BlueFlowers,
+                "Cave Entrance": CaveEntrance,
+                "Cherry Pie": CherryPie,
+                "Constellation 1": Constellation1,
+                Kite: Kite,
+                Ramen: Ramen,
+                Town: Town,
+                Treasure: Treasure,
+                Mountain: Mountain,
+                Sun: Sun,
+                "Action Box": ActionBox,
+                Bed: Bed,
+                "Constellation 2": Constellation2,
+                "Constellation 3": Constellation3,
+                "Full Moon": FullMoon,
+                Mountains: Mountains,
+                "Mount Everest": MountEverest,
+                "Music Notes": MusicNotes,
+                Oak: Oak,
+                Penny: Penny,
+                "Pink Poodle": PinkPoodle,
+                "Shrub 1": Shrub1,
+                "Shrub 2": Shrub2,
+              }[children],
+            }}
+          />
+        )}
       </div>
     </div>
   );
