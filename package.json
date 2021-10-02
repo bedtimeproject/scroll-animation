@@ -1,0 +1,18 @@
+{
+  "name": "scroll-animation",
+  "version": "1.0.0",
+  "description": "takes in a structured json object and animates it to the screen",
+  "main": "index.js",
+  "scripts": {
+    "test": "react-scripts test"
+  },
+  "author": "Alexander Burdiss",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-scripts": "4.0.3"
+  },
+  "devDependencies": {
+    "@testing-library/react": "^12.1.1"
+  }
+}
