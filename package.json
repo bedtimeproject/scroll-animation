@@ -2,12 +2,17 @@
   "name": "scroll-animation",
   "version": "1.0.0",
   "description": "takes in a structured json object and animates it to the screen",
-  "main": "index.js",
+  "main": "build/index.js",
   "scripts": {
-    "test": "react-scripts test"
+    "test": "react-scripts test",
+    "start": "webpack --watch",
+    "build": "webpack"
   },
   "author": "Alexander Burdiss",
   "license": "MIT",
+  "peerDependencies": {
+    "react": "^17.0.2"
+  },
   "dependencies": {
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -15,6 +20,13 @@
     "sass": "^1.35.2"
   },
   "devDependencies": {
-    "@testing-library/react": "^12.1.1"
+    "@babel/cli": "^7.15.7",
+    "@babel/core": "^7.15.5",
+    "@babel/preset-env": "^7.15.6",
+    "@testing-library/react": "^12.1.1",
+    "babel-loader": "^8.2.2",
+    "sass-loader": "^10.2.0",
+    "svg-inline-loader": "^0.8.2",
+    "webpack-cli": "^4.8.0"
   }
 }
