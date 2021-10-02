@@ -18,7 +18,7 @@ import Body from "./Body/Body";
  * preferrably in Viewport heights that will be attached to the body.
  * @author Alexander Burdiss
  * @since 6/26/21
- * @version 1.2.0
+ * @version 1.3.0
  * @component
  * @example
  * <ScrollAnimation story={story}/>
@@ -27,24 +27,27 @@ export default function ScrollAnimation({ story }) {
   const oneIndexPercent = 100 / (story.body.length + 2);
 
   useEffect(() => {
-    if (document.querySelector("#page")) {
-      const bodyStyleMinHeight = `${story.body.length * 100}vh`;
-      document.querySelector("#page").style.minHeight = bodyStyleMinHeight;
-      function handleScroll() {
-        document.body.style.setProperty(
-          "--scroll",
-          window.pageYOffset /
-            (document.querySelector("#page").offsetHeight - window.innerHeight)
-        );
-      }
-      handleScroll();
-      window.addEventListener("scroll", handleScroll);
-      return () => {
-        window.removeEventListener("scroll", handleScroll);
-        document.querySelector("#page").style.minHeight = "";
-        document.body.style.removeProperty("--scroll");
-      };
+    let page = document.querySelector("#page");
+    // If the "page" id doesn't exist, set it on the body.
+    if (!page) {
+      page = document.body;
+      document.body.id = "page";
     }
+    const bodyStyleMinHeight = `${story.body.length * 100}vh`;
+    page.style.minHeight = bodyStyleMinHeight;
+    function handleScroll() {
+      document.body.style.setProperty(
+        "--scroll",
+        window.pageYOffset / (page.offsetHeight - window.innerHeight)
+      );
+    }
+    handleScroll();
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      page.style.minHeight = "";
+      document.body.style.removeProperty("--scroll");
+    };
   }, [story.body.length]);
 
   return (
