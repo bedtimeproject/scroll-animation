@@ -1,57 +1,49 @@
-# The Bedtime Project - Animated Story Module
+# The Bedtime Project - Scroll Animation Module
 
 ## Data Structure
 
 ```js
-const Stanzas = [
-  {
-    stanza:
-      <div>
-        <p>It's that time of day, it's the time we sit down</p>
-        <p>And watch the sun fall on our small mountain town</p>
-      </div>,
-    images: [
-      {
-        component: <img src={Town} alt={"Town"} />,
-        positionX: 'center',
-        positionY: 'center',
-        animation: 'fade',
-        stanzaCount: 1,
-      }
-    ],
-    backgroundColor: '#C80F90',
-  },
-  ...
-];
+const story = {
+  defaultBackgroundColor: "#DDDDDD",
+  stanzaBackgroundColor: "#8bc9e4",
+  animationOverlap: "true",
+  title: "A Scroll Animation",
+  author: "FostyWally",
+  titleCard: "default",
+  titleBackground: "#FF0000",
+  attributionBackground: "#00FF00",
+  attributionCard: "default",
+  stanzaCard: "default",
+  attribution: "Written by FostyWally\nAnimated by Captain Code 😎",
+  body: [
+    {
+      stanza:
+        "It's that time of day, it's the time we sit down.\n\nAnd watch the sun fall on our small mountain town",
+      images: [
+        {
+          component: "Sun",
+          positionX: "right",
+          positionY: "top",
+          animation: "slidedown",
+          stanzaCount: 1,
+        },
+        {
+          component: "Mountain",
+          positionX: "left",
+          positionY: "bottom",
+          animation: "fade",
+          stanzaCount: 4,
+        },
+      ],
+      background: "#8bc9e4",
+    },
+    ...
+  ]
+};
 ```
 
 ## Example
 
 ```js
-// Where Stanzas is the Story Data, organized as above.
-<ScrollAnimation bodyStyleMinHeight={`${Stanzas.length * 100}vh`}>
-  <Title background={stanzaBackgroundColor} author="Daniel Stigmon">
-    The Guide to Sunset
-  </Title>
-  {Stanzas.map((stanza, index) => {
-    return (
-      <React.Fragment>
-        <Stanza
-          index={index + 1}
-          background={stanzaBackgroundColor}
-          stanzaCount={Stanzas.length}
-        >
-          {stanza[0]}
-        </Stanza>
-        <StanzaImage index={index + 1} stanzaCount={Stanzas.length}>
-          {stanza[1]}
-        </StanzaImage>
-      </React.Fragment>
-    );
-  })}
-  <Attribution background={stanzaBackgroundColor} stanzaCount={Stanzas.length}>
-    <p>Written by Daniel Stigmon</p>
-    <p>Animated by Alexander Burdiss</p>
-  </Attribution>
-</ScrollAnimation>
+<ScrollAnimation story={story} />
 ```
